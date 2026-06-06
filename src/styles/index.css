@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #0f172a;
+    --color-secondary: #1e293b;
+    --color-accent: #f59e0b;
+    --color-accent-light: #fbbf24;
+    --color-text: #e2e8f0;
+    --color-muted: #94a3b8;
+  }
+
+  * {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-navy-900 text-slate-200 font-body;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #f59e0b33;
+    color: #fbbf24;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #f59e0b66;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f59e0b;
+  }
+}
+
+@layer components {
+  .section-heading {
+    @apply font-display text-4xl font-bold text-slate-100 mb-2;
+  }
+
+  .section-subheading {
+    @apply text-gold-500 font-mono text-sm tracking-widest uppercase mb-4;
+  }
+
+  .card {
+    @apply bg-navy-800 border border-slate-700/50 rounded-xl p-6
+           hover:border-gold-500/40 transition-all duration-300
+           hover:shadow-lg hover:shadow-gold-500/5;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-gold-500 text-navy-900
+           font-semibold rounded-lg hover:bg-gold-400 transition-all duration-200
+           hover:shadow-lg hover:shadow-gold-500/30 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-gold-500/60
+           text-gold-400 font-semibold rounded-lg hover:bg-gold-500/10
+           transition-all duration-200 hover:-translate-y-0.5;
+  }
+
+  .tag {
+    @apply px-3 py-1 bg-navy-700 border border-slate-600/50 rounded-full
+           text-xs font-mono text-slate-300;
+  }
+
+  .divider-line {
+    @apply h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent my-16;
+  }
+
+  .glass {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
