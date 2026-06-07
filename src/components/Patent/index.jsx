@@ -1,17 +1,17 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FaFileAlt, FaExternalLinkAlt } from 'react-icons/fa'
+import { FaFileAlt } from 'react-icons/fa'
 
 const patents = [
   {
     id: 1,
-    title: 'System and Method for Real-Time Anomaly Detection in IoT Networks Using Edge AI',
-    patentNumber: 'IN 202341XXXXXX',
-    filedDate: 'March 2023',
+    title: 'DrainSafe Sentinel – AI-Robotics Hybrid System for Drainage Blockage and Toxic Gas Detection',
+    patentNumber: 'Idea Patent – Sri Eshwar College of Engineering',
+    filedDate: '2026',
     status: 'Published',
-    inventors: ['Vishnu SA', 'Co-Inventor Name'],
+    inventors: ['Vishnu Sagar V'],
     abstract:
-      'A novel system architecture for deploying lightweight AI models at the network edge, enabling sub-millisecond anomaly detection in industrial IoT environments without relying on cloud connectivity.',
+      'A novel hybrid system combining 60% Artificial Intelligence and 40% Robotics for autonomous detection of drainage blockages and harmful gas emissions in urban environments. The system provides real-time alerts and preventive measures to avoid hazardous situations in drainage infrastructure.',
     url: '',
   },
 ]
@@ -59,37 +59,22 @@ export default function Patent() {
                     <p className="text-gold-400 font-mono text-sm">{patent.patentNumber}</p>
                   </div>
                 </div>
-                <span
-                  className={`shrink-0 text-xs px-3 py-1 rounded-full border font-mono ${
-                    statusColors[patent.status] ?? 'text-slate-400 bg-slate-700 border-slate-600'
-                  }`}
-                >
+                <span className={`shrink-0 text-xs px-3 py-1 rounded-full border font-mono ${statusColors[patent.status]}`}>
                   {patent.status}
                 </span>
               </div>
 
-              <p className="text-slate-400 text-sm leading-relaxed mb-4 pl-16">
-                {patent.abstract}
-              </p>
+              <p className="text-slate-400 text-sm leading-relaxed mb-5 pl-16">{patent.abstract}</p>
 
-              <div className="pl-16 flex flex-wrap items-center gap-6 text-sm">
+              <div className="pl-16 flex flex-wrap items-center gap-8 pt-4 border-t border-slate-700/50">
                 <div>
-                  <span className="text-slate-600 text-xs font-mono uppercase tracking-wider">Filed</span>
-                  <p className="text-slate-400 text-xs mt-0.5">{patent.filedDate}</p>
+                  <p className="text-xs text-slate-600 font-mono uppercase tracking-wider mb-0.5">Filed</p>
+                  <p className="text-slate-300 text-sm">{patent.filedDate}</p>
                 </div>
                 <div>
-                  <span className="text-slate-600 text-xs font-mono uppercase tracking-wider">Inventors</span>
-                  <p className="text-slate-400 text-xs mt-0.5">{patent.inventors.join(', ')}</p>
+                  <p className="text-xs text-slate-600 font-mono uppercase tracking-wider mb-0.5">Inventor</p>
+                  <p className="text-slate-300 text-sm">{patent.inventors.join(', ')}</p>
                 </div>
-                {patent.url && (
-                  <a
-                    href={patent.url}
-                    target="_blank" rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-gold-400 transition-colors"
-                  >
-                    <FaExternalLinkAlt size={10} /> View Patent
-                  </a>
-                )}
               </div>
             </motion.div>
           ))}

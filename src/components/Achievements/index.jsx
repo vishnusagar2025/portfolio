@@ -1,35 +1,49 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FaTrophy, FaMedal, FaStar } from 'react-icons/fa'
+import { FaTrophy, FaMedal, FaStar, FaUsers } from 'react-icons/fa'
 
 const achievements = [
   {
     icon: FaTrophy,
-    title: '1st Place – National Hackathon 2023',
-    description: 'Won first place among 500+ teams for an AI-driven healthcare monitoring system.',
-    year: '2023',
+    title: '1st Place – Coding Carnival',
+    description: 'Won first place in the Coding Carnival competition at Sri Eshwar College of Engineering.',
+    year: '2025',
     color: 'text-gold-400',
   },
   {
-    icon: FaMedal,
-    title: 'Best Paper Award – ICAI 2023',
-    description: 'Recognized for outstanding research contribution at the International Conference on AI.',
-    year: '2023',
-    color: 'text-blue-400',
-  },
-  {
     icon: FaStar,
-    title: 'Dean\'s List – Academic Excellence',
-    description: 'Consistently maintained top 5% academic standing throughout undergraduate studies.',
-    year: '2022',
+    title: 'Top 1% – NPTEL Joy of Computing (Python)',
+    description: 'Scored 100% in the NPTEL "Joy of Computing using Python" exam, ranking in the Top 1% nationwide.',
+    year: '2025',
     color: 'text-purple-400',
   },
   {
-    icon: FaTrophy,
-    title: 'Smart India Hackathon Finalist',
-    description: 'Selected among top 10 teams nationwide for innovative IoT-based smart city solution.',
-    year: '2022',
+    icon: FaUsers,
+    title: 'Team Lead – Acumen Hackathon 2026',
+    description: 'Led the team as Team Lead at Acumen Hackathon 2026 held at Kongu College of Engineering.',
+    year: '2026',
+    color: 'text-blue-400',
+  },
+  {
+    icon: FaMedal,
+    title: '2nd Place – Paper Presentation & Ideathon (CIET)',
+    description: 'Secured second place in both paper presentation and ideathon at Hecura Contest 2026 (CIET).',
+    year: '2026',
     color: 'text-green-400',
+  },
+  {
+    icon: FaTrophy,
+    title: 'Toastmasters – Presentation Mastery Pathway',
+    description: 'Completed the Presentation Mastery Pathway at Sri Eshwar Toastmasters Club as Sergeant at Arms.',
+    year: '2025',
+    color: 'text-orange-400',
+  },
+  {
+    icon: FaStar,
+    title: 'Idea Patent Published',
+    description: 'Published an idea patent at Sri Eshwar College of Engineering for an innovative technical solution.',
+    year: '2026',
+    color: 'text-gold-400',
   },
 ]
 
@@ -49,7 +63,7 @@ export default function Achievements() {
           Awards &amp; <span className="text-gold-400">Achievements</span>
         </h2>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {achievements.map((item, i) => {
             const Icon = item.icon
             return (
@@ -68,8 +82,8 @@ export default function Achievements() {
                     <h3 className="font-semibold text-slate-100 text-sm group-hover:text-gold-400 transition-colors duration-200">
                       {item.title}
                     </h3>
-                    <span className="text-xs text-slate-600 font-mono">{item.year}</span>
                   </div>
+                  <p className="text-xs text-gold-500 font-mono mb-1">{item.year}</p>
                   <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p>
                 </div>
               </motion.div>

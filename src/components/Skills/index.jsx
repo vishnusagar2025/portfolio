@@ -3,20 +3,28 @@ import { useInView } from 'react-intersection-observer'
 
 const skillGroups = [
   {
-    category: 'Languages',
-    skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'SQL'],
+    category: 'Programming Languages',
+    skills: ['Python', 'Python3', 'C', 'C++'],
   },
   {
-    category: 'Frameworks',
-    skills: ['React', 'Node.js', 'Express', 'FastAPI', 'TensorFlow', 'PyTorch'],
+    category: 'AI & ML',
+    skills: ['Machine Learning', 'Deep Learning', 'CNN', 'Data Analysis', 'Scikit-learn', 'TensorFlow'],
   },
   {
-    category: 'Cloud & DevOps',
-    skills: ['AWS', 'Docker', 'Kubernetes', 'GitHub Actions', 'Terraform', 'Linux'],
+    category: 'Tools & Platforms',
+    skills: ['Git', 'GitHub', 'VS Code', 'Figma', 'Canva', 'Postman'],
   },
   {
     category: 'Databases',
-    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'InfluxDB', 'Elasticsearch'],
+    skills: ['MySQL', 'SQL'],
+  },
+  {
+    category: 'Competitive Programming',
+    skills: ['SkillRack (400+)', 'LeetCode (80+)', 'CodeChef (220+)', 'HackerRank'],
+  },
+  {
+    category: 'Soft Skills',
+    skills: ['Public Speaking', 'Team Leadership', 'Mentoring', 'Problem Solving'],
   },
 ]
 
@@ -37,7 +45,7 @@ export default function Skills() {
             Skills &amp; <span className="text-gold-400">Technologies</span>
           </h2>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillGroups.map((group, gi) => (
               <motion.div
                 key={group.category}
@@ -51,9 +59,7 @@ export default function Skills() {
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
-                    <span key={skill} className="tag">
-                      {skill}
-                    </span>
+                    <span key={skill} className="tag">{skill}</span>
                   ))}
                 </div>
               </motion.div>
