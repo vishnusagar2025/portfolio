@@ -24,12 +24,19 @@ const validate = [
 function createTransporter() {
   return nodemailer.createTransport({
     service: 'gmail',
+    secure: true,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,   // App password
     },
   })
 }
+
+// Verify SMTP on startup
+createTransporter().verify((err) => {
+  if (err) console.error('SMTP config error:', err.message)
+  else console.log('SMTP ready')
+})
 
 // POST /api/contact
 router.post('/', contactLimiter, validate, async (req, res) => {

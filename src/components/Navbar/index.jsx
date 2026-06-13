@@ -58,7 +58,7 @@ export default function Navbar() {
             V
           </span>
           <span className="font-display font-semibold text-slate-100 hidden sm:block">
-            Vishnu <span className="text-gold-400">SA</span>
+            Vishnu Sagar <span className="text-gold-400">V</span>
           </span>
         </button>
 
