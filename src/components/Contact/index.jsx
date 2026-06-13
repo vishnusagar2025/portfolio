@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt, FaPhone } from 'react-icons/fa'
-import axios from 'axios'
+import { sendContactMessage } from '../../services/api'
 
 const contactInfo = [
   { icon: FaEnvelope,     label: 'Email',    value: 'vishnusagar.v2025aiml@sece.ac.in', href: 'mailto:vishnusagar.v2025aiml@sece.ac.in' },
@@ -23,7 +23,7 @@ export default function Contact() {
     e.preventDefault()
     setStatus('loading')
     try {
-      await axios.post('/api/contact', form)
+      await sendContactMessage(form)
       setStatus('success')
       setForm({ name: '', email: '', subject: '', message: '' })
     } catch {

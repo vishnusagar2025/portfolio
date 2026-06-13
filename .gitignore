@@ -5,9 +5,11 @@ node_modules/
 dist/
 build/
 
-# Environment variables
+# Environment variables — secrets only
 .env
 backend/.env
+# frontend env files are safe to commit (no secrets, just URLs)
+# .env.development and .env.production are committed intentionally
 
 # Logs
 *.log
