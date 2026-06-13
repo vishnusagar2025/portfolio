@@ -52,7 +52,7 @@ router.post('/', contactLimiter, validate, async (req, res) => {
 
     await transporter.sendMail({
       from:    `"${name}" <${process.env.SMTP_USER}>`,
-      to:      process.env.CONTACT_EMAIL || process.env.SMTP_USER,
+      to:      (process.env.CONTACT_EMAIL || process.env.SMTP_USER).split(',').map(e => e.trim()).join(', '),
       replyTo: email,
       subject: `[Portfolio Contact] ${subject}`,
       html: `
