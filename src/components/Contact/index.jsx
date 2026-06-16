@@ -101,7 +101,7 @@ export default function Contact() {
                   placeholder="Tell me more..." />
               </div>
               <button type="submit" disabled={status === 'loading'} className="btn-primary w-full justify-center disabled:opacity-60">
-                {status === 'loading' ? 'Sending…' : 'Send Message'}
+                {status === 'loading' ? 'Sending… (may take ~30s)' : 'Send Message'}
               </button>
               {status === 'success' && <p className="text-green-400 text-sm text-center">Message sent! I'll get back to you soon.</p>}
               {status === 'error' && <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>}
