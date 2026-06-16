@@ -1,13 +1,14 @@
 const express   = require('express')
 const rateLimit = require('express-rate-limit')
 const { body, validationResult } = require('express-validator')
-const nodemailer = require('nodemailer')
+const { Resend } = require('resend')
 
 const router = express.Router()
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 // Stricter limit for contact form
 const contactLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
+  windowMs: 60 * 60 * 1000,
   max: 5,
   message: { error: 'Too many messages sent from this IP. Try again in an hour.' },
 })
@@ -20,26 +21,6 @@ const validate = [
   body('message').trim().notEmpty().withMessage('Message is required').isLength({ max: 2000 }),
 ]
 
-// Nodemailer transporter (configure via .env)
-function createTransporter() {
-  return nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    requireTLS: true,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  })
-}
-
-// Verify SMTP on startup
-createTransporter().verify((err) => {
-  if (err) console.error('SMTP config error:', err.message)
-  else console.log('SMTP ready')
-})
-
 // POST /api/contact
 router.post('/', contactLimiter, validate, async (req, res) => {
   const errors = validationResult(req)
@@ -48,13 +29,12 @@ router.post('/', contactLimiter, validate, async (req, res) => {
   }
 
   const { name, email, subject, message } = req.body
+  const to = (process.env.CONTACT_EMAIL || 'vishnusagarv3@gmail.com').split(',').map(e => e.trim())
 
   try {
-    const transporter = createTransporter()
-
-    await transporter.sendMail({
-      from:    `"${name}" <${process.env.SMTP_USER}>`,
-      to:      (process.env.CONTACT_EMAIL || process.env.SMTP_USER).split(',').map(e => e.trim()).join(', '),
+    await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>',
+      to,
       replyTo: email,
       subject: `[Portfolio Contact] ${subject}`,
       html: `
@@ -71,7 +51,6 @@ router.post('/', contactLimiter, validate, async (req, res) => {
         </div>
       `,
     })
-
     return res.status(200).json({ message: 'Message sent successfully!' })
   } catch (err) {
     console.error('Email error:', err)
