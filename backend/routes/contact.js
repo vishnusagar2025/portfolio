@@ -23,11 +23,13 @@ const validate = [
 // Nodemailer transporter (configure via .env)
 function createTransporter() {
   return nodemailer.createTransport({
-    service: 'gmail',
-    secure: true,
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    requireTLS: true,
     auth: {
       user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,   // App password
+      pass: process.env.SMTP_PASS,
     },
   })
 }
