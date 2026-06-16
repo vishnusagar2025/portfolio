@@ -32,7 +32,7 @@ router.post('/', contactLimiter, validate, async (req, res) => {
   const to = (process.env.CONTACT_EMAIL || 'vishnusagarv3@gmail.com').split(',').map(e => e.trim())
 
   try {
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
       to,
       replyTo: email,
@@ -51,6 +51,11 @@ router.post('/', contactLimiter, validate, async (req, res) => {
         </div>
       `,
     })
+    if (error) {
+      console.error('Resend error:', error)
+      return res.status(500).json({ error: error.message })
+    }
+    console.log('Email sent:', data)
     return res.status(200).json({ message: 'Message sent successfully!' })
   } catch (err) {
     console.error('Email error:', err)
