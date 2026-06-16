@@ -11,9 +11,19 @@ const app  = express()
 const PORT = process.env.PORT || 5000
 
 // ── Security & middleware ──────────────────────────────────────────────────
+const ALLOWED_ORIGINS = [
+  'http://localhost:5173',
+  'https://vishnusagar.vercel.app',
+  'https://portfolio-sagarvi.vercel.app',
+  process.env.CLIENT_ORIGIN,
+].filter(Boolean)
+
 app.use(helmet())
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+  origin: (origin, cb) => {
+    if (!origin || ALLOWED_ORIGINS.includes(origin)) cb(null, true)
+    else cb(new Error('CORS: origin not allowed'))
+  },
   credentials: true,
 }))
 app.use(express.json({ limit: '10kb' }))
