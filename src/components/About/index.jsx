@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
 const stats = [
-  { label: 'SkillRack Problems', value: '400+' },
+  { label: 'SkillRack Problems', value: '600+' },
   { label: 'LeetCode Problems', value: '80+' },
   { label: 'CodeChef Problems', value: '220+' },
   { label: 'NPTEL Score', value: '100%' },
