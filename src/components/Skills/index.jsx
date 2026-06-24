@@ -20,7 +20,7 @@ const skillGroups = [
   },
   {
     category: 'Competitive Programming',
-    skills: ['SkillRack (400+)', 'LeetCode (80+)', 'CodeChef (220+)', 'HackerRank'],
+    skills: ['SkillRack (600+)', 'LeetCode (80+)', 'CodeChef (220+)', 'HackerRank'],
   },
   {
     category: 'Soft Skills',
